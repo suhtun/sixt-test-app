@@ -1,12 +1,11 @@
-package mm.com.sumyat.mercari.remote
+package mm.com.sumyat.sixt_testapp.network
 
 import io.reactivex.Single
-import mm.com.sumyat.mercari.remote.model.Car
+import mm.com.sumyat.sixt_testapp.network.model.Car
 import retrofit2.http.GET
-import retrofit2.http.Url
 
 interface NetworkService {
     @GET("cars")
-    fun getCars(): Single<List<Car>>
+    fun callCars(): Single<List<Car>>
 
 }

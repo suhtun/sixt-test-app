@@ -1,4 +1,4 @@
-package mm.com.sumyat.mercari.remote
+package mm.com.sumyat.sixt_testapp.network
 
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
