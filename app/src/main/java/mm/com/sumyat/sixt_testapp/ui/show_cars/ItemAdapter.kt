@@ -4,13 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import mm.com.sumyat.sixt_testapp.R
 import mm.com.sumyat.sixt_testapp.network.model.Car
+import com.google.android.gms.maps.model.LatLng
 
-class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+
+class ItemAdapter :
+    RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     var cars: List<Car> = arrayListOf()
 
@@ -21,13 +26,17 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
         Glide.with(holder.itemView.context)
             .load(car.carImageUrl)
+            .apply(RequestOptions().override(300, 150))
+            .placeholder(R.drawable.background)
             .into(holder.imageView)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.car_item, parent, false)
+
         return ViewHolder(itemView)
     }
 
@@ -42,6 +51,7 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
         init {
             imageView = view.findViewById(R.id.img)
             infoTxt = view.findViewById(R.id.txt_info)
+
         }
     }
 

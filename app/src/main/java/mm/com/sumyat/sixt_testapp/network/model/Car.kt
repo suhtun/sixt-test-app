@@ -1,3 +1,38 @@
 package mm.com.sumyat.sixt_testapp.network.model
 
-class Car (val id:String, val modelIdentifier:String, val modelName:String, val name:String, val make:String, val group:String, val color:String, val series:String, val fuelType:String, val fuelLevel:String, val transmission:String, val licensePlate:String, val latitude:Double, val longitude:Double, val innerCleanliness:String, val carImageUrl:String)
+import com.google.gson.annotations.SerializedName
+
+class Car(
+    @SerializedName("id")
+    val id: String,
+    @SerializedName("modelIdentifier")
+    val modelIdentifier: String,
+    @SerializedName("modelName")
+    val modelName: String,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("make")
+    val make: String,
+    @SerializedName("group")
+    val group: String,
+    @SerializedName("color")
+    val color: String,
+    @SerializedName("series")
+    val series: String,
+    @SerializedName("fuelType")
+    val fuelType: String,
+    @SerializedName("fuelLevel")
+    val fuelLevel: Double,
+    @SerializedName("transmission")
+    val transmission: String,
+    @SerializedName("licensePlate")
+    val licensePlate: String,
+    @SerializedName("latitude")
+    val latitude: Double,
+    @SerializedName("longitude")
+    val longitude: Double,
+    @SerializedName("innerCleanliness")
+    val innerCleanliness: String,
+    @SerializedName("carImageUrl")
+    val carImageUrl: String
+)

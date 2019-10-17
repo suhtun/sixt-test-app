@@ -18,6 +18,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/card_margin"/>
+
     <mm.com.sumyat.sixt_testapp.ui.widget.empty.EmptyView
         android:id="@+id/view_empty"
         android:layout_width="match_parent"

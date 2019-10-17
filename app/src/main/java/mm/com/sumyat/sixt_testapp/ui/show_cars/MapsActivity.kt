@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -11,18 +12,26 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_maps.*
 import mm.com.sumyat.sixt_testapp.R
 import mm.com.sumyat.sixt_testapp.network.model.Car
+import mm.com.sumyat.sixt_testapp.ui.model.CommonMarker
 import mm.com.sumyat.sixt_testapp.ui.util.BrowseState
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
     val viewModel: MapsViewModel by viewModel()
+
+    val itemAdapter: ItemAdapter by inject()
 
     val INITIAL_ZOOM = 12f
 
@@ -39,6 +48,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         })
 
         viewModel.fetchMaster()
+
+        recycler_view.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recycler_view.adapter = itemAdapter
+    }
+
+    private fun updateListView(cars: List<Car>) {
+        itemAdapter.cars = cars
+        itemAdapter.notifyDataSetChanged()
     }
 
     private fun handleDataState(browseState: BrowseState) {
@@ -59,23 +77,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         view_error.visibility = View.GONE
         progress.visibility = View.GONE
         if (data != null && data.isNotEmpty()) {
-            showMarkers(data.map { LatLng(it.latitude,it.longitude) })
+            updateListView(data)
+            showMarkers(data.map { CommonMarker(it.name, LatLng(it.latitude, it.longitude)) })
         } else {
             view_empty.visibility = View.VISIBLE
         }
     }
 
-    private fun showMarkers(locations : List<LatLng>){
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locations[0], INITIAL_ZOOM))
+    private fun showMarkers(commonMarker: List<CommonMarker>) {
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(commonMarker[0].location, INITIAL_ZOOM))
 
-        for(marker in locations){
-            newMarker(marker)
+        for (marker in commonMarker) {
+            newMarker(marker.title, marker.location)
         }
     }
 
-    private fun newMarker(location: LatLng){
+    private fun newMarker(title: String, location: LatLng) {
         mMap.addMarker(
-            MarkerOptions().position(location).title("Marker in Sydney").icon(
+            MarkerOptions().position(location).title(title).icon(
                 BitmapDescriptorFactory.fromResource(R.drawable.car)
             )
         )
@@ -85,14 +104,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         progress.visibility = View.GONE
         view_empty.visibility = View.GONE
         view_error.visibility = View.VISIBLE
+        recycler_view.visibility = View.GONE
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
+
 }
