@@ -1,5 +1,7 @@
 package mm.com.sumyat.sixt_testapp.di
 
+import mm.com.sumyat.mercari.util.JobExecutor
+import mm.com.sumyat.mercari.util.UiThread
 import mm.com.sumyat.sixt_testapp.BuildConfig
 import mm.com.sumyat.sixt_testapp.data.SampleRemote
 import mm.com.sumyat.sixt_testapp.data.executor.PostExecutionThread
