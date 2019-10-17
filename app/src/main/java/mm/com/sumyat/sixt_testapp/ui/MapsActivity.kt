@@ -9,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_maps.*
@@ -20,7 +21,10 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+
     val viewModel: MapsViewModel by viewModel()
+
+    val INITIAL_ZOOM = 12f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,14 +59,26 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         view_error.visibility = View.GONE
         progress.visibility = View.GONE
         if (data != null && data.isNotEmpty()) {
-            updateListView(data)
+            showMarkers(data.map { LatLng(it.latitude,it.longitude) })
         } else {
             view_empty.visibility = View.VISIBLE
         }
     }
 
-    private fun updateListView(list: List<Car>) {
+    private fun showMarkers(locations : List<LatLng>){
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locations[0], INITIAL_ZOOM))
 
+        for(marker in locations){
+            newMarker(marker)
+        }
+    }
+
+    private fun newMarker(location: LatLng){
+        mMap.addMarker(
+            MarkerOptions().position(location).title("Marker in Sydney").icon(
+                BitmapDescriptorFactory.fromResource(R.drawable.car)
+            )
+        )
     }
 
     private fun setupScreenForError(message: String?) {
