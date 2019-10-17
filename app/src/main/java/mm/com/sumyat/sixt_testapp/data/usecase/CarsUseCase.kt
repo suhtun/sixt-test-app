@@ -7,7 +7,7 @@ import mm.com.sumyat.sixt_testapp.data.executor.ThreadExecutor
 import mm.com.sumyat.sixt_testapp.data.interactor.SingleUseCase
 import mm.com.sumyat.sixt_testapp.network.model.Car
 
-open class GetMaster (
+open class CarsUseCase (
     val repo: SampleRemote,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread
