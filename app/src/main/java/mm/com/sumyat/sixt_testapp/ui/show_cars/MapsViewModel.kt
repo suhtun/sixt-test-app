@@ -1,4 +1,4 @@
-package mm.com.sumyat.sixt_testapp.ui
+package mm.com.sumyat.sixt_testapp.ui.show_cars
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

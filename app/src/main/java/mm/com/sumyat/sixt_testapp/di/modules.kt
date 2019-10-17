@@ -9,7 +9,8 @@ import mm.com.sumyat.sixt_testapp.data.executor.ThreadExecutor
 import mm.com.sumyat.sixt_testapp.data.usecase.CarsUseCase
 import mm.com.sumyat.sixt_testapp.network.NetworkServiceFactory
 import mm.com.sumyat.sixt_testapp.network.SampleRemoteImpl
-import mm.com.sumyat.sixt_testapp.ui.MapsViewModel
+import mm.com.sumyat.sixt_testapp.ui.show_cars.ItemAdapter
+import mm.com.sumyat.sixt_testapp.ui.show_cars.MapsViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -22,9 +23,7 @@ val applicationModule = module(override = true) {
 }
 
 val carModule = module(override = true) {
-//    factory { ItemAdapter() }
+    factory { ItemAdapter() }
     factory { CarsUseCase(get(), get(), get()) }
-//    factory { CarsUseCase(get(), get(), get()) }
     viewModel { MapsViewModel(get()) }
-//    single { TabItemViewModel(get()) }
 }
