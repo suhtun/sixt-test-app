@@ -4,14 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import mm.com.sumyat.sixt_testapp.R
 import mm.com.sumyat.sixt_testapp.network.model.Car
-import com.google.android.gms.maps.model.LatLng
 
 
 class ItemAdapter :
@@ -22,7 +20,11 @@ class ItemAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val car = cars[position]
 
-        holder.infoTxt.text = "$ ${car.licensePlate} , ${car.make}"
+        holder.txtInfo.text = "${car.make} ${car.modelName} - ${car.name}"
+
+        holder.txtLicensePlate.text = "${car.licensePlate}"
+
+        holder.txtInnerCleanliness.text = "${car.innerCleanliness}"
 
         Glide.with(holder.itemView.context)
             .load(car.carImageUrl)
@@ -46,12 +48,15 @@ class ItemAdapter :
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var imageView: ImageView
-        var infoTxt: TextView
+        var txtInfo: TextView
+        var txtInnerCleanliness : TextView
+        var txtLicensePlate : TextView
 
         init {
             imageView = view.findViewById(R.id.img)
-            infoTxt = view.findViewById(R.id.txt_info)
-
+            txtInfo = view.findViewById(R.id.txt_info)
+            txtInnerCleanliness = view.findViewById(R.id.txt_innerCleanliness)
+            txtLicensePlate = view.findViewById(R.id.txt_licensePlate)
         }
     }
 

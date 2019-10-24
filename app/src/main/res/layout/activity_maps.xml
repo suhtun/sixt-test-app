@@ -23,7 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:visibility="visible"
         android:layout_marginBottom="@dimen/card_margin"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="bottom"/>
 
     <mm.com.sumyat.sixt_testapp.ui.widget.empty.EmptyView
         android:id="@+id/view_empty"

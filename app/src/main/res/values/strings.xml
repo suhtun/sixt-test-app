@@ -5,4 +5,5 @@
     <string name="label_error_result">Oops, there was an error fetching the data</string>
     <string name="button_check_again">Check again</string>
     <string name="button_try_again">Try again</string>
+    <string name="rent_btn">Rent Now</string>
 </resources>
