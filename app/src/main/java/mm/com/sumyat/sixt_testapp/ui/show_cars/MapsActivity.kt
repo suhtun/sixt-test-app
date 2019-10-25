@@ -34,7 +34,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     val itemAdapter: ItemAdapter by inject()
 
-    val INITIAL_ZOOM = 14f
+    val INITIAL_ZOOM = 12f
 
     override fun onStart() {
         window.apply {
@@ -135,6 +135,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
 
         mMap = googleMap
+
 
         with(mMap) {
             setOnMarkerClickListener(this@MapsActivity)

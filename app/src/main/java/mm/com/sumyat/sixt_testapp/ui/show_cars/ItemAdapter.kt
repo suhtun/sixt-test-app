@@ -20,7 +20,7 @@ class ItemAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val car = cars[position]
 
-        holder.txtInfo.text = "${car.make} ${car.modelName} - ${car.name}"
+        holder.txtInfo.text = "${car.make} ${car.modelName}"
 
         holder.txtLicensePlate.text = "${car.licensePlate}"
 
