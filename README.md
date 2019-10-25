@@ -1,6 +1,6 @@
 # About App
 
-![architecture](https://github.com/suhtun/hello-world/blob/master/72685758_2440571942723667_5279722444213452800_n.png)
+![architecture](https://media.giphy.com/media/ZZeNxB8LlD1RRBvRTa/giphy.gif)
 
 # Requirements
 * AndroidX
@@ -13,10 +13,9 @@ This is a sample application with MVVM architecture implemented with small diffe
 In this branch you'll find:
 
 Koin(service locator) for dependency injection.
-A single-activity architecture, using the Navigation component to manage fragment operations.
-A presentation layer that contains a fragment (View) and a ViewModel per screen (or feature).
-Reactive UIs using LiveData observables and Data Binding.
-A data layer with a repository and two data sources (local using Room and remote) that are queried with one-shot operations (no listeners or data streams). 
+A presentation layer that contains a View and a ViewModel per screen (or feature).
+Reactive UIs using LiveData observables.
+A data layer with a repository and remote data sources that are queried with one-shot operations (no listeners or data streams). 
 
 
 It is written 100% in Kotlin.
