@@ -1,6 +1,6 @@
 # About App
 
-![architecture](https://media.giphy.com/media/ZZeNxB8LlD1RRBvRTa/giphy.gif)
+![architecture](https://media.giphy.com/media/LPUNJv2e48JR2dTbk0/giphy.gif)
 
 # Requirements
 * AndroidX
